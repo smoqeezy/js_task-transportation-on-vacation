@@ -5,15 +5,23 @@
  */
 function calculateRentalCost(days) {
   // write code here
-  let totalCost = days * 40;
+  const DAILY_RATE = 40;
+  const DISCOUNT_FOR_7_DAYS = 50;
+  const DISCOUNT_FOR_3_DAYS = 20;
+  const MIN_DAYS_FOR_7_DISCOUNT = 7;
+  const MIN_DAYS_FOR_3_DISCOUNT = 3;
 
-  if (days >= 7) {
-    totalCost -= 50;
-  } else if (days >= 3) {
-    totalCost -= 20;
+  const baseCost = days * DAILY_RATE;
+
+  if (days >= MIN_DAYS_FOR_7_DISCOUNT) {
+    return baseCost - DISCOUNT_FOR_7_DAYS;
   }
 
-  return totalCost;
+  if (days >= MIN_DAYS_FOR_3_DISCOUNT) {
+    return baseCost - DISCOUNT_FOR_3_DAYS;
+  }
+
+  return baseCost;
 }
 
 module.exports = calculateRentalCost;
